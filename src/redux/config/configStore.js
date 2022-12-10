@@ -5,7 +5,7 @@ import { configureStore } from "@reduxjs/toolkit";
  * import 해온 것은 slice.reducer 입니다.
  */
 import counter from "../modules/counterSlice";
-import todos from "../modules/todosSlice";
+import families from "../modules/familiesSlice";
 
 /**
  * 모듈(Slice)이 여러개인 경우
@@ -15,7 +15,7 @@ import todos from "../modules/todosSlice";
  * 이것을 각각 모듈로 구현한 다음에 아래 코드로 2개의 모듈을 스토어에 연결해준 것 입니다.
  */
 const store = configureStore({
-  reducer: { counter: counter, todos: todos },
+  reducer: { counter: counter, families: families },
 });
 
 export default store;

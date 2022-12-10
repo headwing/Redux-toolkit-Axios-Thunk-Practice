@@ -1,3 +1,24 @@
 {
-  "todos": []
+  "families": [
+    {
+      "id": 0,
+      "title": "아이와 함께",
+      "content": "크리스마스",
+      "comments": [
+        { "id": 0, "content": "좋아요" },
+        { "id": 1, "content": "가고싶어요!" }
+      ],
+      "좋아요": 0
+    },
+    {
+      "id": 1,
+      "title": "xxx",
+      "content": "크리스마스",
+      "comments": [
+        { "id": 0, "content": "굿" },
+        { "id": 1, "content": "힘내" }
+      ],
+      "좋아요": 2
+    }
+  ]
 }
