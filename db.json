@@ -3,22 +3,53 @@
     {
       "id": 0,
       "title": "아이와 함께",
-      "content": "크리스마스",
-      "comments": [
-        { "id": 0, "content": "좋아요" },
-        { "id": 1, "content": "가고싶어요!" }
-      ],
+      "content": "크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스",
+      "image": "https://blog.kakaocdn.net/dn/b8Fvpb/btrQItSCghx/BREJyJrx1WpsPkZYkZMsJ1/img.png",
       "좋아요": 0
     },
     {
       "id": 1,
-      "title": "xxx",
-      "content": "크리스마스",
-      "comments": [
-        { "id": 0, "content": "굿" },
-        { "id": 1, "content": "힘내" }
-      ],
+      "title": "집에서 꾸민 트리",
+      "content": "크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스",
+      "image": "https://www.wikihow.com/images_en/thumb/6/6b/Christmas-Tree--2010-.jpg/460px-Christmas-Tree--2010-.jpg",
       "좋아요": 2
+    }
+  ],
+  "comments": [
+    {
+      "postId": 0,
+      "id": 0,
+      "content": "ㅇㅇㅇ"
+    },
+    {
+      "postId": 0,
+      "id": 1,
+      "content": "ㄴㄹㅇㄹㄹ"
+    },
+    {
+      "postId": 0,
+      "id": 2,
+      "content": "sssss"
+    },
+    {
+      "postId": 0,
+      "id": 3,
+      "content": "vvv"
+    },
+    {
+      "postId": 0,
+      "id": 4,
+      "content": "eeee"
+    },
+    {
+      "postId": 0,
+      "id": 5,
+      "content": "ddd"
+    },
+    {
+      "postId": 0,
+      "id": 6,
+      "content": "cx"
     }
   ]
 }
