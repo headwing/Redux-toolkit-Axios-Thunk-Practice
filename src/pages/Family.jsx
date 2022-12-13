@@ -5,41 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   __getFamilies,
   __getComments,
-  //__deleteComments,
+  __deleteComments,
+  __editComments,
 } from "../redux/modules/familiesSlice";
-// import {
-//   __getComments,
-//   onClickDeleteButtonHandler,
-// } from "../redux/modules/commentsSlice";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Family.css";
-// import { Button } from "react-bootstrap";
 
 const Family = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  // console.log(typeof id);
-  // const state = useSelector((state) => state.families);
-  // console.log(state);
+  console.log(id);
   const { isLoading, error, families, comments } = useSelector(
     (state) => state.families
   );
-
-  const onClickDeleteButtonHandler = (id, commentId, comment) => {
-    console.log(id, commentId, comment);
-    axios.delete(`http://localhost:3001/comments/${commentId}`);
-    //dispatch(__deleteComments(commentId));
-    dispatch(__getComments(Number(id)));
-  };
-  // const { commentsIsLoading, commentsError, comments } = useSelector(
-  //   (state) => state.comments
-  // );
-
-  const onClickEditButtonHandler = (id, commentId, editComment) => {
-    axios.patch(`http://localhost:3001/comments/${commentId}`, editComment);
-    dispatch(__getComments(Number(id)));
-  };
 
   const onClickAddButtonHandler = (addComment) => {
     axios.post("http://localhost:3001/comments", addComment);
@@ -64,10 +43,6 @@ const Family = () => {
     // 합치기
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(__getComments());
-  // }, [dispatch]);
-
   if (isLoading) {
     return <div>로딩 중....</div>;
   }
@@ -78,38 +53,6 @@ const Family = () => {
 
   console.log(families);
   console.log(comments);
-  // let family;
-  // let comment;
-
-  // if (!isLoading) {
-  //   console.log(families);
-  //   family = families.filter((family) => family.id === Number(id))[0];
-  //   console.log(family);
-
-  //   console.log(comments);
-  //   comment = comments.filter((comment) => comment.postId === Number(id));
-  //   console.log(comment);
-  // }
-  // console.log(family);
-
-  // onClickDeleteButtonHandler = (commentId) => {
-  //   console.log(
-  //     `http://localhost:3001/families/${Number(id)}/comments/${commentId}`
-  //   );
-  //   axios.delete(
-  //     `http://localhost:3001/families/${Number(id)}/comments/${commentId}`
-  //   );
-  // };
-
-  // if (commentsIsLoading) {
-  //   return <div>로딩 중....</div>;
-  // }
-
-  // if (!commentsIsLoading) {
-  //   console.log(comments);
-  //   comment = comments.filter((comment) => comment.postId === Number(id));
-  //   console.log(comment);
-  // }
 
   return (
     <div className="detail">
@@ -126,11 +69,7 @@ const Family = () => {
             <div>
               <div key={comment.id}>댓글 : {comment.content}</div>
 
-              <button
-                onClick={() =>
-                  onClickDeleteButtonHandler(id, comment.id, comment)
-                }
-              >
+              <button onClick={() => dispatch(__deleteComments(comment.id))}>
                 삭제
               </button>
               <input
@@ -147,7 +86,7 @@ const Family = () => {
               ></input>
               <button
                 onClick={() =>
-                  onClickEditButtonHandler(id, comment.id, editComment)
+                  dispatch(__editComments([comment.id, editComment]))
                 }
               >
                 수정

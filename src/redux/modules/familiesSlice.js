@@ -15,8 +15,8 @@ export const __getFamilies = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get("http://localhost:3001/families");
-      console.log(data.data);
-      console.log(data.data.filter((family) => family.id === payload)[0]);
+      // console.log(data.data);
+      // console.log(data.data.filter((family) => family.id === payload)[0]);
       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
       return thunkAPI.fulfillWithValue(
         data.data.filter((family) => family.id === payload)[0]
@@ -34,8 +34,8 @@ export const __getComments = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get("http://localhost:3001/comments");
-      console.log(data.data);
-      console.log(data.data.filter((comment) => comment.postId === payload));
+      // console.log(data.data);
+      // console.log(data.data.filter((comment) => comment.postId === payload));
       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
       return thunkAPI.fulfillWithValue(
         data.data.filter((comment) => comment.postId === payload)
@@ -48,25 +48,45 @@ export const __getComments = createAsyncThunk(
   }
 );
 
-// export const __deleteComments = createAsyncThunk(
-//   "deleteComments",
-//   async (payload, thunkAPI) => {
-//     try {
-//       console.log(payload);
-//       const data = await axios.delete(
-//         `http://localhost:3001/comments/${payload}`
-//       );
-//       console.log(data.data);
-//       // thunkAPI.dispatch(__getComments());
-//       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
-//       return thunkAPI.fulfillWithValue(data.data); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
-//     } catch (error) {
-//       console.log(error);
-//       // 네트워크 요청이 실패한 경우 dispatch해주는 기능을 가진 API (Promise가 rejected된 경우)
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
+export const __deleteComments = createAsyncThunk(
+  "deleteComments",
+  async (payload, thunkAPI) => {
+    try {
+      console.log(payload);
+      await axios.delete(`http://localhost:3001/comments/${payload}`);
+      // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
+      return thunkAPI.fulfillWithValue(payload); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
+    } catch (error) {
+      console.log(error);
+      // 네트워크 요청이 실패한 경우 dispatch해주는 기능을 가진 API (Promise가 rejected된 경우)
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __editComments = createAsyncThunk(
+  "editComments",
+  async (payload, thunkAPI) => {
+    try {
+      console.log(payload);
+      const [commentId, editComment] = payload;
+      // const commentId = payload[0];
+      // const editComment = payload[1];
+      await axios.patch(
+        `http://localhost:3001/comments/${commentId}`,
+        editComment
+      );
+      // console.log(data.data);
+      // thunkAPI.dispatch(__getComments());
+      // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
+      return thunkAPI.fulfillWithValue(payload); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
+    } catch (error) {
+      console.log(error);
+      // 네트워크 요청이 실패한 경우 dispatch해주는 기능을 가진 API (Promise가 rejected된 경우)
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const familiesSlice = createSlice({
   name: "families",
@@ -99,30 +119,43 @@ export const familiesSlice = createSlice({
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
 
-    // [__deleteComments.pending]: (state) => {
-    //   state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
-    // },
-    // [__deleteComments.fulfilled]: (state, action) => {
-    //   state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-    //   state.comments = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
-    // },
-    // [__deleteComments.rejected]: (state, action) => {
-    //   state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
-    //   state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
-    // },
+    [__deleteComments.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__deleteComments.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.comments = state.comments.filter(
+        (comment) => comment.id !== action.payload
+      ); // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      // console.log(
+      //   state.comments.filter((comment) => comment.id !== action.payload)
+      // );
+    },
+    [__deleteComments.rejected]: (state, action) => {
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
+
+    [__editComments.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__editComments.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      // console.log(action.payload);
+      // console.log(
+      //   state.comments.findIndex((comment) => comment.id === action.payload[0])
+      // );
+      const index = state.comments.findIndex(
+        (comment) => comment.id === action.payload[0]
+      );
+      state.comments.splice(index, 1, action.payload[1]);
+    },
+    [__editComments.rejected]: (state, action) => {
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
   },
 });
-// 이거는 안되는 거야~
-// export const onClickDeleteButtonHandler = (id, commentId, family) => {
-//   console.log(typeof id, typeof commentId, family);
-//   let copy = family;
-//   const aaa = copy.comments.filter((comment) => comment.id !== commentId)[0];
-//   copy["comments"] = [];
-//   // family.comments = aaa;
-//   //console.log(copy.comments);
-//   console.log(copy);
-//   console.log(copy["comments"]);
-// };
 
 export const {} = familiesSlice.actions;
 export default familiesSlice.reducer;
