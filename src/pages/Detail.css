@@ -1,0 +1,45 @@
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.detailMain {
+  display: flex;
+  width: 1040px;
+}
+.detailContent {
+  width: 500px;
+  height: 600px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 0px 20px 0px 20px;
+  margin-right: 30px;
+  background-color: #00874331;
+  position: relative;
+}
+.detailContentButtons {
+  position: absolute;
+  bottom: 20px;
+}
+.detailContentButtons > button {
+  margin-right: 10px;
+}
+.detailComments {
+  width: 500px;
+  height: 600px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 20px 20px 0px 20px;
+  position: relative;
+  background-color: #00874331;
+}
+.detailImage {
+  width: 456px;
+  border-radius: 5px;
+}
+.detailCommentsInput {
+  position: absolute;
+  bottom: 10px;
+  margin-bottom: 10px;
+}

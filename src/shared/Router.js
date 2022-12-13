@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Family from "../pages/Family";
+import Detail from "../pages/Detail";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="family" element={<Family />} />
-        <Route path="family/:id" element={<Family />} />
+        <Route path="detail" element={<Detail />} />
+        <Route path="detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

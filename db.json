@@ -1,30 +1,65 @@
 {
-  "families": [
+  "posts": [
     {
       "id": 0,
+      "category": "family",
       "title": "아이와 함께",
       "content": "크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스",
-      "image": "https://blog.kakaocdn.net/dn/b8Fvpb/btrQItSCghx/BREJyJrx1WpsPkZYkZMsJ1/img.png",
+      "url": "https://blog.kakaocdn.net/dn/b8Fvpb/btrQItSCghx/BREJyJrx1WpsPkZYkZMsJ1/img.png",
       "좋아요": 0
     },
     {
       "id": 1,
+      "category": "family",
       "title": "집에서 꾸민 트리",
       "content": "크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스",
-      "image": "https://www.wikihow.com/images_en/thumb/6/6b/Christmas-Tree--2010-.jpg/460px-Christmas-Tree--2010-.jpg",
+      "url": "https://www.wikihow.com/images_en/thumb/6/6b/Christmas-Tree--2010-.jpg/460px-Christmas-Tree--2010-.jpg",
+      "좋아요": 2
+    },
+    {
+      "id": 2,
+      "category": "couple",
+      "title": "집에서 꾸민 트리",
+      "content": "크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스크리스마스",
+      "url": "https://www.wikihow.com/images_en/thumb/6/6b/Christmas-Tree--2010-.jpg/460px-Christmas-Tree--2010-.jpg",
       "좋아요": 2
     }
   ],
   "comments": [
     {
       "postId": 0,
-      "id": 8,
-      "content": "ㄹㄹㄹㄹㄹ"
+      "id": 10,
+      "content": "ㄷㄱㄷㄱㄷㄱㄷㄱ"
     },
     {
       "postId": 0,
-      "id": 10,
-      "content": "ㅍㅍㅍㅍㅍㅍ"
+      "id": 1,
+      "content": "ㅎㅎㅎㅎㅎ"
+    },
+    {
+      "postId": 0,
+      "id": 2,
+      "content": "ㅇㄹㅇㄹㅇㄹㅇㄹ"
+    },
+    {
+      "postId": 0,
+      "id": 3,
+      "content": "ㄷㄷㄷㄷㄷㄷ"
+    },
+    {
+      "postId": 0,
+      "id": 4,
+      "content": "ㄹㄹㄹㄹㅇㄹㅇㄹㅇㄹㅇㄹ"
+    },
+    {
+      "postId": 1,
+      "id": 4,
+      "content": "ㄹㄹㄹㄹㅇㄹㅇㄹㅇㄹㅇㄹ"
+    },
+    {
+      "postId": 1,
+      "id": 5,
+      "content": "sdsdsdssd"
     }
   ]
 }
