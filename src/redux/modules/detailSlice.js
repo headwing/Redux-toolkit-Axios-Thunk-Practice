@@ -33,8 +33,12 @@ export const __deletePost = createAsyncThunk(
   "deletePost",
   async (payload, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3001/posts/${payload}`);
-      window.location.assign("/");
+      const [id, indexList] = payload;
+      await axios.delete(`http://localhost:3001/posts/${id}`);
+
+      for (const i in indexList) {
+        await axios.delete(`http://localhost:3001/comments/${i}`);
+      }
       // console.log(data.data);
       // console.log(data.data.filter((family) => family.id === payload)[0]);
       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
@@ -109,11 +113,15 @@ export const __addComments = createAsyncThunk(
   "addComments",
   async (payload, thunkAPI) => {
     try {
-      await axios.post("http://localhost:3001/comments", payload);
-      // console.log(data.data);
-      // thunkAPI.dispatch(__getComments());
-      // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
-      return thunkAPI.fulfillWithValue(payload); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
+      console.log(payload);
+      const [addComment, postId] = payload;
+      const dateId = new Date();
+      const newComment = { ...addComment, postId: postId, id: dateId };
+      console.log(newComment);
+
+      await axios.post("http://localhost:3001/comments", newComment);
+      // // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
+      return thunkAPI.fulfillWithValue(newComment); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
     } catch (error) {
       console.log(error);
       // 네트워크 요청이 실패한 경우 dispatch해주는 기능을 가진 API (Promise가 rejected된 경우)
