@@ -9,7 +9,7 @@ import {
   __editComments,
   __addComments,
 } from "../redux/modules/detailSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card, Button, Form, InputGroup } from "react-bootstrap";
 import "./Detail.css";
@@ -20,6 +20,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   console.log(id);
+  const navigate = useNavigate();
 
   const { isLoading, error, post, comments } = useSelector(
     (state) => state.detail
@@ -93,7 +94,14 @@ const Detail = () => {
                 삭제
               </Button>
               {/* <button onClick={onClickPostDeleteButtonHandler}>삭제</button> */}
-              <Button variant="success">수정</Button>
+              <Button
+                variant="success"
+                onClick={() => {
+                  navigate(`/postingEdit/${post.id}`);
+                }}
+              >
+                수정
+              </Button>
             </div>
           </div>
 

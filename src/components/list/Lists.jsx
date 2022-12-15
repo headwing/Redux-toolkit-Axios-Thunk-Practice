@@ -7,7 +7,7 @@ const Lists = () => {
   const [posts, setPosts] = useState(null);
 
   const fetchPosts = async () => {
-    const { data } = await axios.get("http://localhost:3001/posts");
+    const { data } = await axios.get("https://test101.fly.dev/posts");
     setPosts(data);
   };
 
@@ -15,7 +15,12 @@ const Lists = () => {
 
   useEffect(() => {
     fetchPosts();
+    console.log("아무거나");
   }, []);
+
+  const onErrorImg = (e) => {
+    e.target.src = "/image/default.jpg";
+  };
 
   return (
     <div className="container">
@@ -27,8 +32,9 @@ const Lists = () => {
                 <Link to={`/detail/${post.id}`} key={post.id}>
                   <img
                     className="photo"
-                    src="http://localhost:3000/image/bg1.jpg"
+                    src={post.url}
                     alt="이미지"
+                    onError={onErrorImg}
                   />
                 </Link>
                 <div className="text">{post.title}</div>

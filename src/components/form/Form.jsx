@@ -16,8 +16,8 @@ function Form() {
   });
 
   const onClickHandler = () => {
-    if (post.title === "") {
-      alert("제목을 입력해주세요");
+    if (post.title === "" || post.title.length >= 15) {
+      alert("15자이내의 제목을 입력해주세요");
     } else if (post.category === "") {
       alert("카테고리를 선태해주세요!");
     } else if (post.content === "") {

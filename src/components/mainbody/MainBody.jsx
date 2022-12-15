@@ -6,7 +6,10 @@ const MainBody = () => {
     <div className="container">
       <div className="inner">
         <div className="item">
-          <div className="item front family">
+          <div
+            className="item front family"
+            style={{ backgroundImage: `url(/image/family2.jpg)` }}
+          >
             <div className="item__name">FAMILY</div>
           </div>
           <div className="item back">
@@ -19,7 +22,10 @@ const MainBody = () => {
           </div>
         </div>
         <div className="item">
-          <div className="item front couple">
+          <div
+            className="item front couple"
+            style={{ backgroundImage: `url(/image/couple.jpg)` }}
+          >
             <div className="item__name">COUPLE</div>
           </div>
           <div className="item back">
@@ -30,7 +36,10 @@ const MainBody = () => {
           </div>
         </div>
         <div className="item">
-          <div className="item front single">
+          <div
+            className="item front single"
+            style={{ backgroundImage: `url(/image/single.jpeg)` }}
+          >
             <div className="item__name">SINGLE</div>
           </div>
           <div className="item back">
@@ -43,7 +52,10 @@ const MainBody = () => {
           </div>
         </div>
         <div className="item">
-          <div className="item front parents">
+          <div
+            className="item front parents"
+            style={{ backgroundImage: `url(/image/parents.jpg)` }}
+          >
             <div className="item__name">PARENTS</div>
           </div>
           <div className="item back">

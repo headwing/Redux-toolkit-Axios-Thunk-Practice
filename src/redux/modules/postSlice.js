@@ -12,8 +12,7 @@ const initialState = {
 
 export const __postPost = createAsyncThunk("postPost", async (payload) => {
   try {
-    await axios.post("http://localhost:3001/posts", payload);
-    console.log(payload);
+    await axios.post("https://test101.fly.dev/posts", payload);
   } catch (error) {
     console.log(error);
   }
@@ -21,8 +20,7 @@ export const __postPost = createAsyncThunk("postPost", async (payload) => {
 
 export const __patchPost = createAsyncThunk("patchPost", async (payload) => {
   try {
-    console.log(payload[0], payload[1]);
-    await axios.put(`http://localhost:3001/posts/${payload[0]}`, payload[1]);
+    await axios.put(`https://test101.fly.dev/posts${payload[0]}`, payload[1]);
   } catch (error) {
     console.log(error);
   }
@@ -33,7 +31,7 @@ export const __getPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/posts/${payload}`
+        `https://test101.fly.dev/posts${payload}`
       );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {

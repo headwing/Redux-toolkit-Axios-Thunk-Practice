@@ -31,38 +31,30 @@
   height: 270px;
 
   backface-visibility: hidden;
+  color: #fff;
   transition: 1s;
   position: absolute;
-  /* border: 2px solid #000; */
   transform: rotateY(0deg);
 }
 
 .container .item .front.family {
-  background-image: url("http://localhost:3000/image/family.jpg");
   background-size: cover;
   background-position: center;
-  color: #fff;
   opacity: 0.9;
 }
 .container .item .front.couple {
-  background-image: url("http://localhost:3000/image/couple.jpg");
   background-size: cover;
   background-position: center;
-  color: #fff;
-  /* opacity: 0.9; */
+  opacity: 0.9;
 }
 .container .item .front.single {
-  background-image: url("http://localhost:3000/image/single.jpeg");
   background-size: cover;
-  background-position: center;
-  color: #fff;
-  /* opacity: 0.9; */
+  background-position: bottom;
+  opacity: 0.9;
 }
 .container .item .front.parents {
-  background-image: url("http://localhost:3000/image/parents.jpg");
   background-size: cover;
   background-position: center;
-  color: #fff;
   opacity: 0.9;
 }
 

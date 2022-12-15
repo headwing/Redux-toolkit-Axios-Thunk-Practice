@@ -14,7 +14,7 @@ export const __getPost = createAsyncThunk(
   "getPost",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/posts");
+      const data = await axios.get("https://test101.fly.dev/posts");
       // console.log(data.data);
       // console.log(data.data.filter((family) => family.id === payload)[0]);
       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
@@ -34,10 +34,10 @@ export const __deletePost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const [id, indexList] = payload;
-      await axios.delete(`http://localhost:3001/posts/${id}`);
+      await axios.delete(`https://test101.fly.dev/posts/${id}`);
 
       for (const i in indexList) {
-        await axios.delete(`http://localhost:3001/comments/${i}`);
+        await axios.delete(`https://test101.fly.dev/comments/${i}`);
       }
       // console.log(data.data);
       // console.log(data.data.filter((family) => family.id === payload)[0]);
@@ -55,7 +55,7 @@ export const __getComments = createAsyncThunk(
   "getComments",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/comments");
+      const data = await axios.get("https://test101.fly.dev/comments");
       // console.log(data.data);
       // console.log(data.data.filter((comment) => comment.postId === payload));
       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
@@ -74,8 +74,7 @@ export const __deleteComments = createAsyncThunk(
   "deleteComments",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
-      await axios.delete(`http://localhost:3001/comments/${payload}`);
+      await axios.delete(`https://test101.fly.dev/comments/${payload}`);
 
       // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
       return thunkAPI.fulfillWithValue(payload); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
@@ -91,10 +90,9 @@ export const __editComments = createAsyncThunk(
   "editComments",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const [commentId, editComment] = payload;
       await axios.patch(
-        `http://localhost:3001/comments/${commentId}`,
+        `https://test101.fly.dev/comments/${commentId}`,
         editComment
       );
       // console.log(data.data);
@@ -115,11 +113,11 @@ export const __addComments = createAsyncThunk(
     try {
       console.log(payload);
       const [addComment, postId] = payload;
-      const dateId = new Date();
+      const dateId = new Date().toISOString();
       const newComment = { ...addComment, postId: postId, id: dateId };
       console.log(newComment);
 
-      await axios.post("http://localhost:3001/comments", newComment);
+      await axios.post("https://test101.fly.dev/comments", newComment);
       // // 네트워크 요청이 성공한 경우 dispatch해주는 기능을 가진 API (Propmise가 resolved된 경우)
       return thunkAPI.fulfillWithValue(newComment); // 성공을 하면 fulfillWithValue에 의해 생성된 todos, getTodos, fullfilled라는 action이 dispatch되었다.
     } catch (error) {

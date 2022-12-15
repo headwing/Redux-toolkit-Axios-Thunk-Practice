@@ -7,10 +7,7 @@ const Header = () => {
     <navbar>
       <div className="inner">
         <a href="/" className="logo">
-          <img
-            src="http://localhost:3000/image/logo.png"
-            alt="WRU DOING CHRISMAS"
-          />
+          <img src="/image/logo.png" alt="WRU DOING CHRISMAS" />
         </a>
 
         <div className="sub-menu">
