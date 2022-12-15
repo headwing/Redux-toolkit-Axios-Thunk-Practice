@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Lists.css";
-import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { __getList } from "../../redux/modules/listSlice";
 
 const Lists = () => {
-  const [posts, setPosts] = useState(null);
+  // const [posts, setPosts] = useState(null);
+  const { isLoading, error, posts } = useSelector((state) => state.list);
+  console.log(posts);
+  const dispatch = useDispatch();
 
-  const fetchPosts = async () => {
-    const { data } = await axios.get("https://test101.fly.dev/posts");
-    setPosts(data);
-  };
+  // const fetchPosts = async () => {
+  //   const { data } = await axios.get("https://test101.fly.dev/posts");
+  //   setPosts(data);
+  // };
 
   const { category } = useParams();
 
   useEffect(() => {
-    fetchPosts();
-    console.log("아무거나");
-  }, []);
+    dispatch(__getList());
+  }, [dispatch]);
 
   const onErrorImg = (e) => {
     e.target.src = "/image/default.jpg";
   };
 
+  if (isLoading) {
+    return <div>로딩 중....</div>;
+  }
+  if (error) {
+    return <div>{error.message}</div>;
+  }
   return (
     <div className="container">
       <div className="inners">

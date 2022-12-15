@@ -39,7 +39,7 @@ function EditForm() {
     };
     const payload = [newPost.id, newPost];
     dispatch(__patchPost(payload));
-    navigate(`/${newPost.category}`);
+    navigate("/");
     console.log(newPost.id, newPost);
   };
 

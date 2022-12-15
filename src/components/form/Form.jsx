@@ -25,7 +25,7 @@ function Form() {
     } else {
       dispatch(__postPost(post));
       console.log(post);
-      navigate(`/${post.category}`);
+      navigate("/");
     }
   };
 
